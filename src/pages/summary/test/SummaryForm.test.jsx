@@ -8,7 +8,7 @@ test('Initial Conditions', ()=>{
 
     // FOR CHECK BOX CAPTURING FROM DOM
     const checkbox = screen.getAllByRole('checkbox',{
-        name: "terms and conditions",
+        name: /terms and conditions/i,
     });
 
     // CHECKING CHECKBOX CURRENT STATE
