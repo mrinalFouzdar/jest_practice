@@ -7,12 +7,12 @@ test('Initial Conditions', ()=>{
     render(<SummaryForm/>);
 
     // FOR CHECK BOX CAPTURING FROM DOM
-    const checkbox = screen.getAllByRole('checkbox',{
+    const checkbox = screen.getByRole('checkbox',{
         name: /terms and conditions/i,
     });
 
     // CHECKING CHECKBOX CURRENT STATE
-    console.log(checkbox)
+    // console.log(checkbox)
     expect(checkbox).not.toBeChecked();
 
     //CAPTURING BUTTON
@@ -29,7 +29,7 @@ test("Checkbox enables button on first click and disables on second click", ()=>
         name:/terms and conditions/i,
     })
     const confirmButton = screen.getByRole('button',{
-        name: /confrim order/i
+        name: /confirm order/i
     })
 
     fireEvent.click(checkbox);
