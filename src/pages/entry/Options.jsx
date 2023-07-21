@@ -19,6 +19,7 @@ const Options = ({optionType}) => {
     useEffect(()=>{
         axios.get(`http://localhost:3030/${optionType}`)
         .then(res=>{
+          // console.log(res.data)
             setItems(res.data)
         })
         .catch(err=>{
