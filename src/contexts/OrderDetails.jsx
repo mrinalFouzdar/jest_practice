@@ -27,7 +27,9 @@ export function OrderDetailsProvider(props){
     function updateItemCount(itemName, newItemCount, optionType){
         // make a copy of existing state
         const newOptionCounts ={...optionCounts};
-        
+        if(!newItemCount){
+            newItemCount=0
+        }
         // update teh copy with the new information
         newOptionCounts[optionType][itemName]=newItemCount
 
@@ -43,10 +45,10 @@ export function OrderDetailsProvider(props){
     function calculateTotal(optionType){
         // get an array of counts for the option type(for example,[1,2])
         const countsArray = Object.values(optionCounts[optionType])
-
+        // console.log(optionCounts[optionType])
         //total the values in the array of counts
         const totalCount = countsArray.reduce((total,value)=> total + value,0)
-
+        // console.log({totalCount})
         // multiply the total number of items by the price ofr this item type
         return totalCount * pricePerItem[optionType]
     }
@@ -55,6 +57,8 @@ export function OrderDetailsProvider(props){
         scoops: calculateTotal("scoops"),
         toppings:calculateTotal("toppings")
     }
+
+
     const value={optionCounts, totals,updateItemCount, resetOrder}
     return <OrderDetails.Provider value={value} {...props}/>
 }

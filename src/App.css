@@ -37,3 +37,9 @@
     transform: rotate(360deg);
   }
 }
+
+
+.form-check-input{
+  float: none !important;
+  margin-right: 1rem !important;
+}

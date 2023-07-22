@@ -17,14 +17,22 @@ const Options = ({optionType}) => {
     
     // optionType is 'scoops' or 'topping'
     useEffect(()=>{
-        axios.get(`http://localhost:3030/${optionType}`)
+      // create an abortCoontroller to attach to network request
+      const controller = new AbortController()
+        axios.get(`http://localhost:3030/${optionType}`,{signal: controller.signal})
         .then(res=>{
+          // console.log(res.data)
             setItems(res.data)
         })
         .catch(err=>{
-            setError(true)
+          if(err.name !== "CanceledError") setError(true)
             // console.log("errIcreamdata",err)
         })
+
+        // abort axios call on component unmount
+        return()=>{
+          controller.abort()
+        }
     },[optionType])
 
     if(error){

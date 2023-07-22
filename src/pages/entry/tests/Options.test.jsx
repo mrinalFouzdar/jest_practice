@@ -21,7 +21,7 @@ test("displays image for each scoop option from server", async () => {
 });
 
 test("display image for each topping option from server", async () => {
-  render(<Options optionType="topping" />);
+  render(<Options optionType="toppings" />);
 
   // find image
 
